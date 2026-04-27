@@ -19,7 +19,7 @@ const fraunces = Fraunces({
   style: ['normal', 'italic'],
 });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://keurbally.com';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://keurbally.com';
 const NAME = process.env.NEXT_PUBLIC_BUSINESS_NAME ?? 'Keur Bally';
 
 export const metadata: Metadata = {
