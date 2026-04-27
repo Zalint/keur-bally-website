@@ -1,19 +1,21 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useCart } from '@/contexts/CartContext';
 import CartItem from '@/components/CartItem';
 import EmptyCart from '@/components/EmptyCart';
 import { formatFcfa } from '@/lib/cart';
-import { buildCartLink } from '@/lib/whatsapp';
+import CheckoutModal from './CheckoutModal';
 
 export default function PanierView({
   availability,
 }: {
   availability: Record<string, boolean>;
 }) {
-  const { items, totalFcfa, hasFreeDeliveryItem, isHydrated } = useCart();
+  const { items, totalFcfa, hasFreeDeliveryItem, isHydrated, clearCart } = useCart();
+  const [modalOpen, setModalOpen] = useState(false);
+  const [confirmedRef, setConfirmedRef] = useState<string | null>(null);
 
   // Marque les items devenus indisponibles depuis l'ajout au panier
   // (sans muter le contexte : on calcule juste pour l'affichage et le lien WA).
@@ -29,7 +31,13 @@ export default function PanierView({
   const hasIndispo = annotated.some((i) => i.disponible === false);
   const validItems = annotated.filter((i) => i.disponible !== false);
   const validTotal = validItems.reduce((s, i) => s + i.prix_fcfa * i.quantite, 0);
-  const link = buildCartLink(annotated);
+  const onValidated = (_whatsappUrl: string, ref: string) => {
+    // Le modal gère lui-même l'ouverture éventuelle de WhatsApp.
+    // Ici on affiche la page de confirmation et on vide le panier.
+    setConfirmedRef(ref);
+    setModalOpen(false);
+    clearCart();
+  };
 
   // Avant hydratation, on montre un placeholder pour éviter le flash "panier vide"
   if (!isHydrated) {
@@ -38,7 +46,27 @@ export default function PanierView({
     );
   }
 
-  if (annotated.length === 0) return <EmptyCart />;
+  if (annotated.length === 0) {
+    return confirmedRef ? (
+      <div className="py-16 text-center">
+        <div className="inline-flex flex-col items-center gap-3 bg-white border border-cream-border rounded-card px-8 py-10 shadow-card">
+          <div className="text-4xl">✓</div>
+          <h2 className="font-serif text-2xl text-kb-green">Commande enregistrée</h2>
+          <p className="text-sm text-kb-olive">
+            Référence : <strong>{confirmedRef}</strong>
+          </p>
+          <Link
+            href="/catalogue"
+            className="mt-2 inline-block h-10 leading-10 px-5 bg-kb-green text-cream rounded-card font-semibold"
+          >
+            Continuer mes achats
+          </Link>
+        </div>
+      </div>
+    ) : (
+      <EmptyCart />
+    );
+  }
 
   return (
     <>
@@ -71,14 +99,14 @@ export default function PanierView({
               ✓ Livraison gratuite incluse
             </div>
           )}
-          <a
-            href={link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block w-full text-center h-12 leading-[3rem] bg-kb-bordeaux text-cream font-semibold rounded-card hover:bg-kb-bordeaux-dark"
+          <button
+            type="button"
+            onClick={() => setModalOpen(true)}
+            disabled={validItems.length === 0}
+            className="block w-full text-center h-12 leading-[3rem] bg-kb-bordeaux text-cream font-semibold rounded-card hover:bg-kb-bordeaux-dark disabled:opacity-50"
           >
-            Commander sur WhatsApp
-          </a>
+            Commander
+          </button>
           <Link
             href="/catalogue"
             className="block mt-2 text-center text-sm text-kb-olive hover:text-kb-bordeaux underline"
@@ -92,6 +120,14 @@ export default function PanierView({
           </p>
         </div>
       </div>
+
+      <CheckoutModal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        items={validItems}
+        totalFcfa={validTotal}
+        onValidated={onValidated}
+      />
     </>
   );
 }

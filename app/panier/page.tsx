@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getAllItems } from '@/lib/sheets';
+import { getAllItems } from '@/lib/items';
 import PanierView from './PanierView';
 
 export const revalidate = 3600;

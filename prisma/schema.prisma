@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ItemType {
+  PRODUIT
+  PACK
+}
+
+enum AdminRole {
+  OWNER
+  EDITOR
+}
+
+enum OrderStatus {
+  NOUVEAU
+  CONFIRME
+  EN_LIVRAISON
+  LIVRE
+  ANNULE
+}
+
+model Item {
+  id                String   @id
+  slug              String   @unique
+  type              ItemType
+  nom               String
+  categorie         String
+  description       String?
+  prixFcfa          Int
+  unite             String
+  imageUrl          String
+  imageUrl2         String?
+  imageUrl3         String?
+  disponible        Boolean  @default(true)
+  ordre             Int      @default(100)
+  composition       String?
+  livraisonGratuite Boolean  @default(false)
+  note              String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([categorie, ordre])
+  @@index([type])
+}
+
+model AdminUser {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  passwordHash String
+  nom          String
+  role         AdminRole @default(EDITOR)
+  createdAt    DateTime  @default(now())
+  lastLoginAt  DateTime?
+}
+
+model Order {
+  id              String      @id @default(cuid())
+  ref             String      @unique
+  createdAt       DateTime    @default(now())
+  customerName    String
+  customerPhone   String
+  customerAddress String?
+  customerNote    String?
+  totalFcfa       Int
+  itemsCount      Int
+  status          OrderStatus @default(NOUVEAU)
+  rawMessage      String      @db.Text
+  notifSentAt     DateTime?
+  notifError      String?
+  items           OrderItem[]
+
+  @@index([createdAt])
+  @@index([status])
+}
+
+model OrderItem {
+  id        String   @id @default(cuid())
+  orderId   String
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  itemId    String
+  nom       String
+  type      ItemType
+  unite     String
+  quantite  Float
+  prixFcfa  Int
+  totalLine Int
+}

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import PackCard from '@/components/PackCard';
 import WhatsAppFloatingButton from '@/components/WhatsAppFloatingButton';
-import { getPacks } from '@/lib/sheets';
+import { getPacks } from '@/lib/items';
 
 export const revalidate = 3600;
 
@@ -15,7 +15,7 @@ export default async function PacksPage() {
   const packs = await getPacks();
   return (
     <>
-      <div className="mx-auto max-w-6xl px-4 py-10">
+      <div className="mx-auto max-w-7xl px-4 lg:px-8 py-10">
         <span className="text-xs uppercase tracking-[0.2em] text-kb-bordeaux font-semibold">
           Offre signature
         </span>
@@ -27,7 +27,7 @@ export default async function PacksPage() {
           accueillir vos invités. Composition donnée à titre indicatif —
           substituables si besoin.
         </p>
-        <div className="grid gap-5 mt-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 mt-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {packs.map((p) => (
             <PackCard key={p.id} item={p} preview={4} />
           ))}

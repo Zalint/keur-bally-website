@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getAllItems, getItemBySlug } from '@/lib/sheets';
+import { getAllItems, getItemBySlug } from '@/lib/items';
 import { formatFcfa } from '@/lib/cart';
 import AddToCartButton from '@/components/AddToCartButton';
 import PackComposition from '@/components/PackComposition';

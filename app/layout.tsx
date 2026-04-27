@@ -4,6 +4,7 @@ import './globals.css';
 import { CartProvider } from '@/contexts/CartContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import ServiceWorkerKiller from '@/components/ServiceWorkerKiller';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -50,6 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr" className={`${inter.variable} ${fraunces.variable}`}>
       <body className="min-h-screen flex flex-col">
+        <ServiceWorkerKiller />
         <CartProvider>
           <Header />
           <main className="flex-1">{children}</main>

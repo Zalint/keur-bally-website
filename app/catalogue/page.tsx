@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
-import { getAvailableItems, getCategories } from '@/lib/sheets';
+import { getAvailableItems, getCategories } from '@/lib/items';
 import CatalogueView from './CatalogueView';
 import WhatsAppFloatingButton from '@/components/WhatsAppFloatingButton';
 
@@ -20,7 +20,7 @@ export default async function CataloguePage() {
 
   return (
     <>
-      <div className="mx-auto max-w-6xl px-4 py-10">
+      <div className="mx-auto max-w-7xl px-4 lg:px-8 py-10">
         <h1 className="font-serif text-3xl md:text-4xl font-semibold text-kb-ink">
           Le catalogue
         </h1>
