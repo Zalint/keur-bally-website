@@ -11,9 +11,9 @@ export default function Header() {
             src="/logo-keurbally.png"
             alt="Keur Bally"
             width={48}
-            height={48}
+            height={50}
             priority
-            className="h-12 w-auto"
+            style={{ height: '3rem', width: 'auto' }}
           />
           <span className="font-serif text-xl font-semibold text-kb-green leading-tight">
             Keur Bally

@@ -3,7 +3,7 @@ import Hero from '@/components/Hero';
 import PackCard from '@/components/PackCard';
 import ViandeSection from '@/components/ViandeSection';
 import WhatsAppFloatingButton from '@/components/WhatsAppFloatingButton';
-import { getPacks, getCategories, getAvailableItems } from '@/lib/sheets';
+import { getPacks, getCategories, getAvailableItems } from '@/lib/items';
 
 export const revalidate = 3600;
 

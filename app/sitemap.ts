@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { getAllItems } from '@/lib/sheets';
+import { getAllItems } from '@/lib/items';
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || 'https://keurbally.com';
 
