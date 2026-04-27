@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import CartIcon from './CartIcon';
 
 export default function Header() {
@@ -6,12 +7,14 @@ export default function Header() {
     <header className="sticky top-0 z-40 bg-cream/95 backdrop-blur border-b border-cream-border">
       <div className="mx-auto max-w-6xl px-4 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
-          <span
-            className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-kb-green text-cream font-serif text-lg font-bold"
-            aria-hidden
-          >
-            KB
-          </span>
+          <Image
+            src="/logo-keurbally.png"
+            alt="Keur Bally"
+            width={48}
+            height={48}
+            priority
+            className="h-12 w-auto"
+          />
           <span className="font-serif text-xl font-semibold text-kb-green leading-tight">
             Keur Bally
             <span className="block text-[11px] font-sans tracking-wider uppercase text-kb-olive">

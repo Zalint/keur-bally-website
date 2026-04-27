@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Hero() {
   return (
@@ -43,18 +44,15 @@ export default function Hero() {
         <div className="relative aspect-[4/5] max-w-sm justify-self-center md:justify-self-end">
           <div className="absolute inset-0 bg-kb-green rounded-card -rotate-3" aria-hidden />
           <div className="absolute inset-0 bg-kb-bordeaux rounded-card rotate-2" aria-hidden />
-          <div className="relative w-full h-full rounded-card bg-white border-4 border-cream flex items-center justify-center shadow-pack">
-            <div className="text-center px-8">
-              <span className="block font-serif text-7xl font-bold text-kb-green">
-                KB
-              </span>
-              <span className="block mt-3 font-serif italic text-xl text-kb-bordeaux">
-                Keur Bally
-              </span>
-              <span className="block mt-1 text-xs uppercase tracking-[0.25em] text-kb-olive">
-                Boucherie · Mini-Market
-              </span>
-            </div>
+          <div className="relative w-full h-full rounded-card bg-white border-4 border-cream flex items-center justify-center shadow-pack p-6">
+            <Image
+              src="/logo-keurbally.png"
+              alt="Keur Bally — Boucherie & Mini-Market"
+              width={400}
+              height={420}
+              priority
+              className="w-full h-auto object-contain"
+            />
           </div>
         </div>
       </div>
