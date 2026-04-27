@@ -15,7 +15,7 @@ export default function Header() {
           <span className="font-serif text-xl font-semibold text-kb-green leading-tight">
             Keur Bally
             <span className="block text-[11px] font-sans tracking-wider uppercase text-kb-olive">
-              Mini-Market
+              Boucherie · Mini-Market
             </span>
           </span>
         </Link>

@@ -1,6 +1,6 @@
 'use client';
 
-type FilterValue = 'tous' | 'produit' | 'pack';
+type FilterValue = 'tous' | 'viande' | 'produit' | 'pack';
 
 export default function TypeFilter({
   value,
@@ -11,6 +11,7 @@ export default function TypeFilter({
 }) {
   const opts: { v: FilterValue; label: string }[] = [
     { v: 'tous', label: 'Tous' },
+    { v: 'viande', label: 'Boucherie' },
     { v: 'produit', label: 'Produits' },
     { v: 'pack', label: 'Packs' },
   ];

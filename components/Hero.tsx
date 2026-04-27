@@ -14,7 +14,7 @@ export default function Hero() {
       <div className="relative mx-auto max-w-6xl px-4 py-16 md:py-24 grid gap-10 md:grid-cols-2 items-center">
         <div>
           <span className="inline-block text-xs uppercase tracking-[0.2em] text-kb-bordeaux font-semibold mb-4">
-            Mini-Market · Liberté 5
+            Boucherie · Mini-Market · Liberté 5
           </span>
           <h1 className="font-serif text-4xl md:text-5xl font-semibold text-kb-ink leading-[1.1]">
             Votre épicerie de quartier,{' '}
@@ -52,7 +52,7 @@ export default function Hero() {
                 Keur Bally
               </span>
               <span className="block mt-1 text-xs uppercase tracking-[0.25em] text-kb-olive">
-                Mini-Market
+                Boucherie · Mini-Market
               </span>
             </div>
           </div>

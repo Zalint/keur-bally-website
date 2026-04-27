@@ -7,7 +7,8 @@ import ItemGrid from '@/components/ItemGrid';
 import TypeFilter from '@/components/TypeFilter';
 import CategoryFilter from '@/components/CategoryFilter';
 
-type TypeValue = 'tous' | 'produit' | 'pack';
+type TypeValue = 'tous' | 'viande' | 'produit' | 'pack';
+const VIANDE_CAT = 'Viande fraîche';
 
 export default function CatalogueView({
   items,
@@ -27,7 +28,9 @@ export default function CatalogueView({
 
   const filtered = useMemo(() => {
     return items.filter((i) => {
-      if (type !== 'tous' && i.type !== type) return false;
+      if (type === 'viande' && i.categorie !== VIANDE_CAT) return false;
+      if (type === 'produit' && (i.type !== 'produit' || i.categorie === VIANDE_CAT)) return false;
+      if (type === 'pack' && i.type !== 'pack') return false;
       if (cat && i.categorie !== cat) return false;
       return true;
     });

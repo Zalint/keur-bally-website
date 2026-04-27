@@ -25,7 +25,7 @@ const NAME = process.env.NEXT_PUBLIC_BUSINESS_NAME ?? 'Keur Bally';
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${NAME} — Mini-Market à Dakar`,
+    default: `${NAME} — Boucherie & Mini-Market à Dakar`,
     template: `%s · ${NAME}`,
   },
   description:
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'fr_FR',
     siteName: NAME,
-    title: `${NAME} — Mini-Market à Dakar`,
+    title: `${NAME} — Boucherie & Mini-Market à Dakar`,
     description:
       'Épicerie, produits frais, viande et packs livrés à Dakar. Commande WhatsApp.',
   },
