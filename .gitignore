@@ -3,6 +3,7 @@ node_modules
 out
 dist
 .env
+.env.temp
 .env*.local
 .vercel
 .DS_Store
