@@ -91,13 +91,13 @@ export default async function HomePage() {
             },
             {
               n: '2',
-              t: 'Commandez sur WhatsApp',
-              d: 'Un clic, votre commande s\'envoie avec tous les détails.',
+              t: 'Validez vos coordonnées',
+              d: 'Nom et téléphone obligatoires, adresse et note optionnels.',
             },
             {
               n: '3',
-              t: 'Recevez',
-              d: 'On confirme l\'adresse, le créneau, et on vous livre à Dakar.',
+              t: 'Commandez',
+              d: 'Votre commande est enregistrée, envoyez-la par WhatsApp si vous le souhaitez.',
             },
           ].map((s) => (
             <div key={s.n} className="text-center">
