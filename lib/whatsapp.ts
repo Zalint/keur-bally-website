@@ -60,8 +60,6 @@ export function buildCartMessage(items: CartItem[]): string {
     lines,
     '',
     `Total indicatif : ${total}`,
-    '',
-    "Je comprends que certains produits peuvent être remplacés par des équivalents en cas d'indisponibilité. Merci de me confirmer la disponibilité, l'adresse de livraison et le créneau.",
   ].join('\n');
 }
 

@@ -26,9 +26,8 @@ export function cartTotal(items: CartItem[]): number {
 }
 
 export function cartTotalQuantite(items: CartItem[]): number {
-  return Math.ceil(
-    items.filter((i) => i.disponible !== false).reduce((s, i) => s + i.quantite, 0),
-  );
+  // 1 ligne du panier = 1 article, peu importe la quantité (5 kg = 1 article).
+  return items.filter((i) => i.disponible !== false).length;
 }
 
 export function hasFreeDeliveryItem(items: CartItem[]): boolean {
