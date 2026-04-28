@@ -4,7 +4,7 @@ import WhatsAppFloatingButton from '@/components/WhatsAppFloatingButton';
 export const metadata: Metadata = {
   title: 'Comment commander',
   description:
-    'Quatre étapes pour commander chez Keur Bally : choisissez, validez vos coordonnées, confirmez sur WhatsApp, recevez à domicile.',
+    'Trois étapes pour commander chez Keur Bally : choisissez, validez vos coordonnées, confirmez.',
 };
 
 const FAQ = [
@@ -37,25 +37,21 @@ export default function CommandPage() {
         <h1 className="font-serif text-3xl md:text-4xl font-semibold text-kb-ink">
           Comment commander
         </h1>
-        <p className="mt-2 text-kb-olive">Quatre étapes simples, zéro friction.</p>
+        <p className="mt-2 text-kb-olive">Trois étapes simples, zéro friction.</p>
 
         <ol className="mt-8 space-y-5">
           {[
             {
               t: 'Choisissez vos articles',
-              d: 'Naviguez dans le catalogue ou les packs, ajoutez ce que vous voulez à votre panier.',
+              d: 'Catalogue → panier. Ajoutez les produits ou packs que vous voulez.',
             },
             {
               t: 'Validez vos coordonnées',
-              d: 'Cliquez sur « Commander » et renseignez votre nom et votre numéro de téléphone. L\'adresse de livraison et une note sont optionnelles.',
+              d: 'Modal : nom et téléphone (obligatoires), adresse et note (optionnels).',
             },
             {
-              t: 'Confirmez sur WhatsApp',
-              d: 'Votre commande reçoit une référence (ex. KB-A3F2). Ouvrez WhatsApp depuis le bouton, le message est pré-rempli, il suffit d\'appuyer sur Envoyer.',
-            },
-            {
-              t: 'Recevez la livraison',
-              d: 'Nous confirmons la disponibilité, le créneau et l\'adresse. Paiement à la livraison.',
+              t: 'Confirmez',
+              d: 'Votre commande reçoit une référence. Ouvrez WhatsApp pour finaliser l\'envoi.',
             },
           ].map((s, i) => (
             <li
